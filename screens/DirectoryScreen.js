@@ -4,7 +4,7 @@ import { Avatar, Image, ListItem } from 'react-native-elements';
 const DirectoryScreen = (props) => {
     const renderDirectoryItem = ({ item: beer }) => {
         return (
-            <ListItem>
+            <ListItem onPress={() => props.onPress(beer.id)}>
                 <Image
                     source={beer.image}
                     style={{ width: 50, height: 50 }}
