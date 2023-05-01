@@ -5,7 +5,7 @@ const RenderBeer = ({ beer }) => {
     if (beer) {
         return (
             <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={beer.image}>
+                <Card.Image source={beer.image} >
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text
                             style={{
