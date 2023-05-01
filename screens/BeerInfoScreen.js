@@ -1,7 +1,9 @@
 import RenderBeer from '../features/beers/RenderBeer';
 
-const BeerInfoScreen = (props) => {
-    return <RenderBeer beer={props.beer} />;
+const BeerInfoScreen = ({ route }) => {
+    const { beer } = route.params;
+
+    return <RenderBeer beer={beer} />;
 };
 
 export default BeerInfoScreen;

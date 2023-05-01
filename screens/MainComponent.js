@@ -1,26 +1,49 @@
-import { useState } from 'react';
-import { View } from 'react-native';
-import { BEERS } from '../shared/BEERS';
-import DirectoryScreen from './DirectoryScreen';
+import { Platform, View } from 'react-native';
+import Constants from 'expo-constants';
 import BeerInfoScreen from './BeerInfoScreen';
+import DirectoryScreen from './DirectoryScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Main = () => {
-    const [beers, setBeers] = useState(BEERS);
-    const [selectedBeerId, setSelectedBeerId] = useState();
+const DirectoryNavigator = () => {
+    const Stack = createStackNavigator();
 
     return (
-        <View style={{ flex: 1 }} >
-            <DirectoryScreen
-                beers={beers}
-                onPress={(beerId) => setSelectedBeerId(beerId)}
+        <Stack.Navigator
+            initialRouteName='Directory'
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#5637DD'
+                },
+                headerTintColor: '#fff'
+            }}
+        >
+            <Stack.Screen
+                name='Directory'
+                component={DirectoryScreen}
+                options={{ title: 'Beer Directory' }}
             />
-            <BeerInfoScreen
-                beer={
-                    beers.filter(
-                        (beer) => beer.id === selectedBeerId
-                    )[0]
-                }
+            <Stack.Screen
+                name='BeerInfo'
+                component={BeerInfoScreen}
+                options={({ route }) => ({
+                    title: route.params.beer.name
+                })}
             />
+
+        </Stack.Navigator>
+    );
+};
+
+const Main = () => {
+    return (
+        <View
+            style={{
+                flex: 1,
+                paddingTop:
+                    Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+            }}
+        >
+            <DirectoryNavigator />
         </View>
     );
 };
