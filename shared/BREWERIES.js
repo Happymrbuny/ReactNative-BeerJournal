@@ -1,10 +1,10 @@
-import bentPaddleLogo from '../assets/img/bent-paddle-logo.png';
+import bentPaddleLogo from '../assets/images/bent-paddle-logo.png';
 //Photo by Jonny Caspari on Unsplash
-import castleDangerLogo from '../assets/img/castle-danger-logo.png';
+import castleDangerLogo from '../assets/images/castle-danger-logo.png';
 // Photo by LoboStudio Hamburg on Unsplash
-import summitLogo from '../assets/img/summit-logo.png';
+import summitLogo from '../assets/images/summit-logo.png';
 // Photo by Jonathan Gallegos on Unsplash
-import surlyLogo from '../assets/img/surly-logo.png';
+import surlyLogo from '../assets/images/surly-logo.png';
 
 export const BREWERIES = [
     {

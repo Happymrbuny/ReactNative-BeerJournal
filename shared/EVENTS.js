@@ -1,21 +1,21 @@
-import bootStrapLogo from '../assets/img/bootstrap-logo.png';
-import gitLogo from '../assets/img/git-logo.png';
-import mongoLogo from '../assets/img/mongo-logo.png';
-import hoppedUpCaribouLogo from '../assets/img/HoppedUpLogo.svg';
+import beerDabblerLogo from '../assets/images/beerdabbler-logo.png';
+import stPaulSummerBeerFestLogo from '../assets/images/stpaulbeerfest-logo.png';
+import allPintsNorthLogo from '../assets/images/allPintsNorth-logo.png';
+import hoppedUpCaribouLogo from '../assets/images/HoppedUp-logo.png';
 
 export const EVENTS = [
     {
         id: 0,
-        name: 'Bootstrap Outfitters',
-        image: bootStrapLogo,
+        name: 'MN Beer Dabbler',
+        image: beerDabblerLogo,
         featured: false,
         description:
-            "Bootstrap Outfitters supplies you with the gear you need at prices you can't beat."
+            "MN Beer Dabbler description here."
     },
     {
         id: 1,
-        name: 'Git Out Expeditions',
-        image: gitLogo,
+        name: 'St. Paul Summer Beer Fest',
+        image: stPaulSummerBeerFestLogo,
         featured: false,
         description:
             'Join Git Out Expeditions to explore new horizons with a group of other adventurers!'
@@ -23,7 +23,7 @@ export const EVENTS = [
     {
         id: 2,
         name: 'Mongo Fly Shop',
-        image: mongoLogo,
+        image: allPintsNorthLogo,
         featured: false,
         description:
             'Need a new fishing pole, a tacklebox, or flies of all kinds? Stop by Mongo Fly Shop.'
