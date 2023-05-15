@@ -57,9 +57,17 @@ const MyBeersNavigator = () => {
             <Stack.Screen
                 name='My Beers'
                 component={MyBeersScreen}
-                optoins={{
-                    title: 'My Beers'
-                }}
+                options={({ navigation }) => ({
+                    title: 'My Beers',
+                    headerLeft: () => (
+                        <Icon
+                            name='beer'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -73,9 +81,17 @@ const BreweriesNavigator = () => {
             <Stack.Screen
                 name='Breweries'
                 component={BreweriesScreen}
-                optoins={{
-                    title: 'Breweries'
-                }}
+                options={({ navigation }) => ({
+                    title: 'Breweries',
+                    headerLeft: () => (
+                        <Icon
+                            name='building-o'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -89,9 +105,17 @@ const EventsNavigator = () => {
             <Stack.Screen
                 name='Events'
                 component={EventsScreen}
-                optoins={{
-                    title: 'Beer Events'
-                }}
+                options={({ navigation }) => ({
+                    title: 'Events',
+                    headerLeft: () => (
+                        <Icon
+                            name='calendar'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -105,6 +129,16 @@ const AboutNavigator = () => {
             <Stack.Screen
                 name='About'
                 component={AboutScreen}
+                options={({ navigation }) => ({
+                    headerLeft: () => (
+                        <Icon
+                            name='info-circle'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -118,9 +152,17 @@ const ContactNavigator = () => {
             <Stack.Screen
                 name='Contact'
                 component={ContactScreen}
-                optoins={{
-                    title: 'Contact Us'
-                }}
+                options={({ navigation }) => ({
+                    title: 'Contact Us',
+                    headerLeft: () => (
+                        <Icon
+                            name='address-card'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -137,7 +179,17 @@ const DirectoryNavigator = () => {
             <Stack.Screen
                 name='Directory'
                 component={DirectoryScreen}
-                options={{ title: 'Beer Directory' }}
+                options={({ navigation }) => ({
+                    title: 'Beer Directory',
+                    headerLeft: () => (
+                        <Icon
+                            name='list'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
             <Stack.Screen
                 name='BeerInfo'
@@ -167,36 +219,113 @@ const Main = () => {
                 <Drawer.Screen
                     name='Home'
                     component={HomeNavigator}
-                    options={{ title: 'Home' }}
+                    options={{
+                        title: 'Home',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='home'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='Beers'
                     component={MyBeersNavigator}
-                    options={{ title: 'My Beers' }}
+                    options={{
+                        title: 'My Beers',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='beer'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='Breweries'
                     component={BreweriesNavigator}
-                    options={{ title: 'Breweries' }}
+                    options={{
+                        title: 'Breweries',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='building-o'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='Events'
                     component={EventsNavigator}
-                    options={{ title: 'Events' }}
+                    options={{
+                        title: 'Events',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='calendar'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='Directory'
                     component={DirectoryNavigator}
-                    options={{ title: 'Beer Directory' }}
+                    options={{
+                        title: 'Beer Directory',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='list'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='About'
                     component={AboutNavigator}
+                    options={{
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='info-circle'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen
                     name='Contact'
                     component={ContactNavigator}
-                    options={{ title: 'Contact Us' }}
+                    options={{
+                        title: 'Contact Us',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='address-card'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
                 />
             </Drawer.Navigator>
         </View>
