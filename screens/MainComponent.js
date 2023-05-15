@@ -1,8 +1,14 @@
-import { Image, Platform, View } from 'react-native';
+import { Image, Platform, View, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
 import Constants from 'expo-constants';
 import BeerInfoScreen from './BeerInfoScreen';
 import DirectoryScreen from './DirectoryScreen';
 import HomeScreen from './HomeScreen';
+import AboutScreen from './AboutScreen';
+import ContactScreen from './ContactScreen';
+import MyBeersScreen from './MyBeersScreen';
+import BreweriesScreen from './BreweriesScreen';
+import EventsScreen from './EventsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -23,14 +29,97 @@ const screenOptions = {
 const HomeNavigator = () => {
     const Stack = createStackNavigator();
     return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen
+                name='Home'
+                component={HomeScreen}
+                options={({ navigation }) => ({
+                    title: 'Home',
+                    headerLeft: () => (
+                        <Icon
+                            name='home'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+const MyBeersNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
         <Stack.Navigator
             screenOptions={screenOptions}
         >
             <Stack.Screen
-                name='Home'
-                component={HomeScreen}
+                name='My Beers'
+                component={MyBeersScreen}
                 optoins={{
-                    title: 'Home'
+                    title: 'My Beers'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+const BreweriesNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen
+                name='Breweries'
+                component={BreweriesScreen}
+                optoins={{
+                    title: 'Breweries'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+const EventsNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen
+                name='Events'
+                component={EventsScreen}
+                optoins={{
+                    title: 'Beer Events'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+const AboutNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen
+                name='About'
+                component={AboutScreen}
+            />
+        </Stack.Navigator>
+    )
+}
+const ContactNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator
+            screenOptions={screenOptions}
+        >
+            <Stack.Screen
+                name='Contact'
+                component={ContactScreen}
+                optoins={{
+                    title: 'Contact Us'
                 }}
             />
         </Stack.Navigator>
@@ -73,7 +162,7 @@ const Main = () => {
         >
             <Drawer.Navigator
                 initialRoute='Home'
-                drawerStyle={{ backgroundColor: '#CEC8FF' }}
+                drawerStyle={{ backgroundColor: '#FFC457' }}
             >
                 <Drawer.Screen
                     name='Home'
@@ -81,13 +170,46 @@ const Main = () => {
                     options={{ title: 'Home' }}
                 />
                 <Drawer.Screen
+                    name='Beers'
+                    component={MyBeersNavigator}
+                    options={{ title: 'My Beers' }}
+                />
+                <Drawer.Screen
+                    name='Breweries'
+                    component={BreweriesNavigator}
+                    options={{ title: 'Breweries' }}
+                />
+                <Drawer.Screen
+                    name='Events'
+                    component={EventsNavigator}
+                    options={{ title: 'Events' }}
+                />
+                <Drawer.Screen
                     name='Directory'
                     component={DirectoryNavigator}
-                    options={{ title: 'Directory' }}
+                    options={{ title: 'Beer Directory' }}
+                />
+                <Drawer.Screen
+                    name='About'
+                    component={AboutNavigator}
+                />
+                <Drawer.Screen
+                    name='Contact'
+                    component={ContactNavigator}
+                    options={{ title: 'Contact Us' }}
                 />
             </Drawer.Navigator>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    stackIcon: {
+        marginLeft: 10,
+        color: '#fff',
+        fontSize: 24
+    }
+});
+
 
 export default Main;

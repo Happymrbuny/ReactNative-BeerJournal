@@ -10,7 +10,7 @@ const FeaturedItem = ({ item }) => {
         return (
             <Card containerStyle={{ padding: 0 }}>
                 <Card.Image source={item.image}>
-                    <View sytle={{ justifyContent: 'center', flex: 1 }}>
+                    <View>
                         <Text
                             style={{
                                 color: 'black',
@@ -23,7 +23,7 @@ const FeaturedItem = ({ item }) => {
                         </Text>
                     </View>
                 </Card.Image>
-                <Text style={{ margin: 20 }}> {item.description}</Text>
+                <Text style={{ margin: 20 }}>{item.description}</Text>
             </Card>
         );
     }
