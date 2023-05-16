@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FlatList } from 'react-native';
-import { Avatar, Image, ListItem } from 'react-native-elements';
-import { BEERS } from '../shared/BEERS';
+import { Image, ListItem } from 'react-native-elements';
+import { baseUrl } from '../shared/baseUrl';
 
 const DirectoryScreen = ({ navigation }) => {
-    const [beers, setBeers] = useState(BEERS);
+    const beers = useSelector((state) => state.beers);
 
     const renderDirectoryItem = ({ item: beer }) => {
         return (
             <ListItem onPress={() => navigation.navigate('BeerInfo', { beer })}>
                 <Image
-                    source={beer.image}
+                    source={{ uri: baseUrl + beer.image }}
                     style={{ width: 50, height: 50 }}
                     resizeMode='contain'
                 />
@@ -24,7 +24,7 @@ const DirectoryScreen = ({ navigation }) => {
 
     return (
         <FlatList
-            data={beers}
+            data={beers.beersArray}
             renderItem={renderDirectoryItem}
             keyExtractor={(item) => item.id.toString()}
         />

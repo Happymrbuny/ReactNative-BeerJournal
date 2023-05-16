@@ -1,15 +1,13 @@
 import { ScrollView, Text, View } from 'react-native';
-import { useState } from 'react';
 import { Card } from 'react-native-elements';
-import { BEERS } from '../shared/BEERS';
-import { BREWERIES } from '../shared/BREWERIES';
-import { EVENTS } from '../shared/EVENTS';
+import { useSelector } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
 const FeaturedItem = ({ item }) => {
     if (item) {
         return (
             <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={item.image}>
+                <Card.Image source={{ uri: baseUrl + item.image }}>
                     <View>
                         <Text
                             style={{
@@ -31,14 +29,13 @@ const FeaturedItem = ({ item }) => {
 };
 
 const HomeScreen = () => {
-    const [beers, setBeers] = useState(BEERS);
-    const [breweries, setBreweries] = useState(BREWERIES);
-    const [events, setEvents] = useState(EVENTS);
+    const beers = useSelector((state) => state.beers);
+    const breweries = useSelector((state) => state.breweries);
+    const events = useSelector((state) => state.events);
 
-
-    const featBeer = beers.find((item) => item.featured);
-    const featBrewery = breweries.find((item) => item.featured);
-    const featEvent = events.find((item) => item.featured);
+    const featBeer = beers.beersArray.find((item) => item.featured);
+    const featBrewery = breweries.breweriesArray.find((item) => item.featured);
+    const featEvent = events.eventsArray.find((item) => item.featured);
 
     return (
         <ScrollView>

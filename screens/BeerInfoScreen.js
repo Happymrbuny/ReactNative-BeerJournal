@@ -1,12 +1,11 @@
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { COMMENTS } from '../shared/COMMENTS';
 import RenderBeer from '../features/beers/RenderBeer';
 
 const BeerInfoScreen = ({ route }) => {
     const { beer } = route.params;
-
-    const [comments, setComments] = useState(COMMENTS);
+    const comments = useSelector((state) => state.comments);
     const [favorite, setFavorite] = useState(false);
 
     const renderCommentItem = ({ item }) => {
@@ -22,7 +21,7 @@ const BeerInfoScreen = ({ route }) => {
 
     return (
         <FlatList
-            data={comments.filter(
+            data={comments.commentsArray.filter(
                 (comment) => comment.beerId === beer.id
             )}
             renderItem={renderCommentItem}

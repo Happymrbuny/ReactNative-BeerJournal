@@ -15,7 +15,7 @@ export const fetchBreweries = createAsyncThunk(
     }
 );
 
-const breweriessSlice = createSlice({
+const breweriesSlice = createSlice({
     name: 'breweries',
     initialState: { isLoading: true, errMess: null, breweriesArray: [] },
     reducers: {},

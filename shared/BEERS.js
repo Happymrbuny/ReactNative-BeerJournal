@@ -3,7 +3,7 @@ export const BEERS = [
         id: 0,
         name: 'Bent Paddle Black Ale',
         image: require("../assets/images/Bent-Paddle-Black-Ale.jpeg"),
-        featured: true,
+        featured: false,
         description:
             'Brewed to be smooth, chocolatey, semi-roasted ale that bridges the islands of porter and stout.'
     },
@@ -11,7 +11,7 @@ export const BEERS = [
         id: 1,
         name: 'Surly Furious',
         image: require("../assets/images/Surly-Furious-IPA.jpeg"),
-        featured: false,
+        featured: true,
         description:
             'Aggressively hopped and citrusy, but with a chewy, caramel backbone.'
     },

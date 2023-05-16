@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
+import { baseUrl } from '../../shared/baseUrl';
 
 const RenderBeer = (props) => {
     const { beer } = props;
@@ -7,7 +8,7 @@ const RenderBeer = (props) => {
     if (beer) {
         return (
             <Card containerStyle={StyleSheet.cardContainer}>
-                <Card.Image source={beer.image} >
+                <Card.Image source={{ uri: baseUrl + beer.image }} >
                     <View style={{ flex: 1 }}>
                         <Text
                             style={{

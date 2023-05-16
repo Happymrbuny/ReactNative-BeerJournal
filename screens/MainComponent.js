@@ -1,3 +1,9 @@
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchBreweries } from '../features/breweries/breweriesSlice';
+import { fetchBeers } from '../features/beers/beersSlice';
+import { fetchEvents } from '../features/events/eventsSlice';
+import { fetchComments } from '../features/comments/commentsSlice';
 import { Image, ImageBackground, Platform, View, StyleSheet, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Constants from 'expo-constants';
@@ -231,6 +237,15 @@ const CustomDrawerContent = (props) => {
 };
 
 const Main = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchBeers());
+        dispatch(fetchBreweries());
+        dispatch(fetchEvents());
+        dispatch(fetchComments());
+    }, [dispatch]);
+
     return (
         <View
             style={{
