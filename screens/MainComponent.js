@@ -1,4 +1,4 @@
-import { Image, Platform, View, StyleSheet } from 'react-native';
+import { Image, ImageBackground, Platform, View, StyleSheet, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Constants from 'expo-constants';
 import BeerInfoScreen from './BeerInfoScreen';
@@ -10,17 +10,19 @@ import MyBeersScreen from './MyBeersScreen';
 import BreweriesScreen from './BreweriesScreen';
 import EventsScreen from './EventsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import logo from '../assets/images/logo.png';
+import foam from '../assets/images/foam.jpg';
 
 const Drawer = createDrawerNavigator();
 const screenOptions = {
-    headerTintColor: '#fff',
+    headerTintColor: 'black',
     headerStyle: {
-        backgroundColor: 'goldenrod'
+        backgroundColor: '#ec9d00'
     },
     headerBackground: () => (
         <Image
-            source={require('../assets/images/jumbo_bubbles.jpg')}
+            source={require('../assets/images/foam.jpg')}
             style={{ width: '100%', height: '100%' }}
         />
     )
@@ -203,6 +205,31 @@ const DirectoryNavigator = () => {
     );
 };
 
+const CustomDrawerContent = (props) => {
+    return (
+        <DrawerContentScrollView
+            {...props}
+            contentContainerStyle={{
+                paddingTop: 0,
+            }}
+        >
+            <ImageBackground
+                source={foam}
+                style={styles.drawerHeader}
+                resizeMode='cover'
+            >
+                <View style={{ flex: 1 }}>
+                    <Image source={logo} style={styles.drawerImage} />
+                </View>
+                <View style={{ flex: 2 }}>
+                    <Text style={styles.drawerHeaderText}>Beer Journal</Text>
+                </View>
+            </ImageBackground>
+            <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+        </DrawerContentScrollView>
+    )
+};
+
 const Main = () => {
     return (
         <View
@@ -214,7 +241,9 @@ const Main = () => {
         >
             <Drawer.Navigator
                 initialRoute='Home'
-                drawerStyle={{ backgroundColor: '#FFC457' }}
+                drawerStyle={{ backgroundColor: '#ec9d00' }}
+                drawerContent={CustomDrawerContent}
+                drawerContentOptions={{ activeTintColor: 'white' }}
             >
                 <Drawer.Screen
                     name='Home'
@@ -335,10 +364,27 @@ const Main = () => {
 const styles = StyleSheet.create({
     stackIcon: {
         marginLeft: 10,
-        color: '#fff',
+        color: 'black',
         fontSize: 24
+    },
+    drawerHeader: {
+        backgroundColor: '#ec9d00',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        overflow: 'hidden',
+    },
+    drawerHeaderText: {
+        color: 'black',
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    drawerImage: {
+        margin: 10,
+        height: 60,
+        width: 60
     }
 });
-
 
 export default Main;

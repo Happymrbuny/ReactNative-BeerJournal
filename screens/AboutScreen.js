@@ -9,7 +9,7 @@ const AboutScreen = () => {
                 <Card.Title>What drives us to drink</Card.Title>
                 <Card.Divider />
                 <Text style={{ margin: 10 }}>
-                    I'll give you 6 good reasons to have a beer, and then I'll give you one good reason not to.
+                    Buy me a six pack, and I'll give you 6 good reasons to have a beer. Then I'll give you one good reason not to.
                 </Text>
             </Card>
         </ScrollView>
