@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import RenderBeer from '../features/beers/RenderBeer';
-import { toggleFavorite } from '../features/favorites/favoritesSLice';
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
 
 const BeerInfoScreen = ({ route }) => {
     const { beer } = route.params;

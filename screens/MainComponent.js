@@ -293,6 +293,22 @@ const Main = () => {
                     }}
                 />
                 <Drawer.Screen
+                    name='Directory'
+                    component={DirectoryNavigator}
+                    options={{
+                        title: 'Beer Directory',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='list'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen
                     name='Breweries'
                     component={BreweriesNavigator}
                     options={{
@@ -316,22 +332,6 @@ const Main = () => {
                         drawerIcon: ({ color }) => (
                             <Icon
                                 name='calendar'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
-                <Drawer.Screen
-                    name='Directory'
-                    component={DirectoryNavigator}
-                    options={{
-                        title: 'Beer Directory',
-                        drawerIcon: ({ color }) => (
-                            <Icon
-                                name='list'
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24 }}
