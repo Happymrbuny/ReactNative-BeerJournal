@@ -1,10 +1,24 @@
 import { useSelector } from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { Image, ListItem } from 'react-native-elements';
 import { baseUrl } from '../shared/baseUrl';
+import Loading from '../components/LoadingComponent';
 
 const DirectoryScreen = ({ navigation }) => {
     const beers = useSelector((state) => state.beers);
+
+    if (beers.isLoading) {
+        return (
+            <Loading />
+        );
+    }
+    if (beers.errMess) {
+        return (
+            <View>
+                <Text>{beers.errMess}</Text>
+            </View>
+        );
+    }
 
     const renderDirectoryItem = ({ item: beer }) => {
         return (
@@ -21,7 +35,6 @@ const DirectoryScreen = ({ navigation }) => {
             </ListItem>
         );
     };
-
     return (
         <FlatList
             data={beers.beersArray}
