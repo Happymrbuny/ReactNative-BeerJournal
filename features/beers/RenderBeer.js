@@ -30,11 +30,11 @@ const RenderBeer = (props) => {
                 </Text>
                 <Icon
                     onPress={() =>
-                        props.isFavorite
-                            ? console.log('Already set as a favorite')
-                            : props.markFavorite()
+                        props.isMyBeer
+                            ? console.log('Already set as a my beer.')
+                            : props.markMyBeer()
                     }
-                    name={props.isFavorite ? 'heart' : 'heart-o'}
+                    name={props.isMyBeer ? 'heart' : 'heart-o'}
                     type='font-awesome'
                     color='#f50'
                     raised

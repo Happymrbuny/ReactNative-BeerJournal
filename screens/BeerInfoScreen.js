@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import RenderBeer from '../features/beers/RenderBeer';
-import { toggleFavorite } from '../features/favorites/favoritesSlice';
+import { toggleMyBeer } from '../features/myBeers/myBeersSlice';
 
 const BeerInfoScreen = ({ route }) => {
     const { beer } = route.params;
     const comments = useSelector((state) => state.comments);
-    const favorites = useSelector((state) => state.favorites);
+    const myBeers = useSelector((state) => state.myBeers);
     const dispatch = useDispatch();
 
     const renderCommentItem = ({ item }) => {
@@ -27,13 +27,13 @@ const BeerInfoScreen = ({ route }) => {
             )}
             renderItem={renderCommentItem}
             keyExtractor={(item) => item.id.toString()}
-            contentContainerStyle={{ marginHOrizontal: 20, paddingVertical: 20 }}
+            contentContainerStyle={{ marginHorizontal: 20, paddingVertical: 20 }}
             ListHeaderComponent={
                 <>
                     <RenderBeer
                         beer={beer}
-                        isFavorite={favorites.includes(beer.id)}
-                        markFavorite={() => dispatch(toggleFavorite(beer.id))}
+                        isMyBeer={myBeers.includes(beer.id)}
+                        markMyBeer={() => dispatch(toggleMyBeer(beer.id))}
                     />
                     <Text style={styles.commentsTitle}>Comments</Text>
                 </>
