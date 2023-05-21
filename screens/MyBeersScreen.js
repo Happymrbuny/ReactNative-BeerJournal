@@ -29,7 +29,7 @@ const MyBeersScreen = ({ navigation }) => {
                 <View>
                     <ListItem
                         onPress={() =>
-                            navigation.navigate('Directory', {
+                            navigation.navigate('BeerInfo', { beer }, {
                                 screen: 'BeerInfo',
                                 params: { beer }
                             })
@@ -71,6 +71,7 @@ const MyBeersScreen = ({ navigation }) => {
         />
     )
 };
+
 
 const styles = StyleSheet.create({
     deleteView: {

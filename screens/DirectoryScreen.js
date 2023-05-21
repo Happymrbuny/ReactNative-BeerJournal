@@ -100,10 +100,6 @@ const DirectoryTab = ({ navigation }) => {
     );
 };
 
-const MyBeersTab = () => {
-    return <ScrollView></ScrollView>
-};
-
 const Tab = createBottomTabNavigator();
 
 const DirectoryScreen = () => {

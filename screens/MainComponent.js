@@ -20,9 +20,7 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import logo from '../assets/images/logo.png';
 import foam from '../assets/images/foam.jpg';
-import headerfoam from '../assets/images/headerfoam.jpg';
 import bubbles from '../assets/images/bubbles.jpg';
-import { BackgroundImage } from 'react-native-elements/dist/config';
 
 const Drawer = createDrawerNavigator();
 const screenOptions = {
@@ -33,7 +31,7 @@ const screenOptions = {
     headerBackground: () => (
         <Image
             source={require('../assets/images/headerfoam.jpg')}
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
         />
     )
 };
@@ -79,6 +77,13 @@ const MyBeersNavigator = () => {
                             onPress={() => navigation.toggleDrawer()}
                         />
                     )
+                })}
+            />
+            <Stack.Screen
+                name='BeerInfo'
+                component={BeerInfoScreen}
+                options={({ route }) => ({
+                    title: route.params.beer.name
                 })}
             />
         </Stack.Navigator>
