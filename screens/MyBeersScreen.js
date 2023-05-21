@@ -1,6 +1,8 @@
-import { View, FlatList, Text } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { Image, ListItem } from 'react-native-elements';
+import { SwipeRow } from 'react-native-swipe-list-view';
+import { toggleMyBeer } from '../features/myBeers/myBeersSlice';
 import Loading from '../components/LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -9,27 +11,42 @@ const MyBeersScreen = ({ navigation }) => {
         (state) => state.beers
     );
     const myBeers = useSelector((state) => state.myBeers);
+    const dispatch = useDispatch();
 
     const renderMyBeer = ({ item: beer }) => {
         return (
-            <ListItem
-                onPress={() =>
-                    navigation.navigate('Directory', {
-                        screen: 'BeerInfo',
-                        params: { beer }
-                    })
-                }
-            >
-                <Image
-                    source={{ uri: baseUrl + beer.image }}
-                    style={{ width: 50, height: 50 }}
-                    resizeMode='contain'
-                />
-                <ListItem.Content>
-                    <ListItem.Title>{beer.name}</ListItem.Title>
-                    <ListItem.Subtitle>{beer.description}</ListItem.Subtitle>
-                </ListItem.Content>
-            </ListItem>
+            <SwipeRow rightOpenValue={-100}>
+                <View style={styles.deleteView}>
+                    <TouchableOpacity
+                        style={styles.deleteTouchable}
+                        onPress={() =>
+                            dispatch(toggleMyBeer(beer.id))
+                        }
+                    >
+                        <Text style={styles.deleteText}>Remove from My Beers</Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <ListItem
+                        onPress={() =>
+                            navigation.navigate('Directory', {
+                                screen: 'BeerInfo',
+                                params: { beer }
+                            })
+                        }
+                    >
+                        <Image
+                            source={{ uri: baseUrl + beer.image }}
+                            style={{ width: 50, height: 50 }}
+                            resizeMode='contain'
+                        />
+                        <ListItem.Content>
+                            <ListItem.Title>{beer.name}</ListItem.Title>
+                            <ListItem.Subtitle>{beer.description}</ListItem.Subtitle>
+                        </ListItem.Content>
+                    </ListItem>
+                </View>
+            </SwipeRow>
         )
     }
 
@@ -54,5 +71,26 @@ const MyBeersScreen = ({ navigation }) => {
         />
     )
 };
+
+const styles = StyleSheet.create({
+    deleteView: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        flex: 1
+    },
+    deleteTouchable: {
+        backgroundColor: 'red',
+        height: '100%',
+        justifyContent: 'center'
+    },
+    deleteText: {
+        color: 'white',
+        fontWeight: '700',
+        textAlign: 'center',
+        fontSize: 16,
+        width: 100
+    }
+});
 
 export default MyBeersScreen;
