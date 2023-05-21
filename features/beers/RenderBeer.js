@@ -11,11 +11,7 @@ const RenderBeer = (props) => {
                 <Card.Image source={{ uri: baseUrl + beer.image }} >
                     <View style={{ flex: 1 }}>
                         <Text
-                            style={{
-                                color: 'white',
-                                textAlign: 'center',
-                                fontSize: 20
-                            }}
+                            style={styles.cardText}
                         >
                             {beer.name}
                         </Text>
@@ -28,18 +24,28 @@ const RenderBeer = (props) => {
                 >
                     {beer.description}
                 </Text>
-                <Icon
-                    onPress={() =>
-                        props.isMyBeer
-                            ? console.log('Already set as a my beer.')
-                            : props.markMyBeer()
-                    }
-                    name={props.isMyBeer ? 'heart' : 'heart-o'}
-                    type='font-awesome'
-                    color='#f50'
-                    raised
-                    reverse
-                />
+                <View style={styles.cardRow}>
+                    <Icon
+                        onPress={() =>
+                            props.isMyBeer
+                                ? console.log('Already set as a my beer.')
+                                : props.markMyBeer()
+                        }
+                        name={props.isMyBeer ? 'heart' : 'heart-o'}
+                        type='font-awesome'
+                        color='#f50'
+                        raised
+                        reverse
+                    />
+                    <Icon
+                        name='pencil'
+                        type='font-awesome'
+                        color='#5637DD'
+                        raised
+                        reverse
+                        onPress={() => { props.onShowModal() }}
+                    />
+                </View>
             </Card>
         );
     }
@@ -51,6 +57,21 @@ const styles = StyleSheet.create({
         padding: 0,
         margin: 0,
         marginBottom: 20
+    },
+    cardRow: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        margin: 20
+    },
+    cardText: {
+        textShadowColor: 'rgba(0,0,0,1)',
+        textShadowOffset: { width: -1, height: 1 },
+        textShadowRadius: 20,
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 20
     }
 });
 
