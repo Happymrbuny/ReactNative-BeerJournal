@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FlatList, Text, View } from 'react-native';
 import { Image, ListItem } from 'react-native-elements';
@@ -9,6 +9,14 @@ import { Picker } from '@react-native-picker/picker';
 const DirectoryScreen = ({ navigation }) => {
     const beers = useSelector((state) => state.beers);
     const [selectedStyle, setSelectedStyle] = useState('');
+    const [beerStyleOptions, setBeerStyleOptions] = useState([]);
+
+    useEffect(() => {
+        const styles = beers.beersArray.map((beer) => beer.style);
+        const uniqueStyles = [...new Set(styles)];
+        setBeerStyleOptions(uniqueStyles);
+    }, [beers.beersArray]);
+
 
     if (beers.isLoading) {
         return (
@@ -53,9 +61,9 @@ const DirectoryScreen = ({ navigation }) => {
                         onValueChange={(itemValue) => setSelectedStyle(itemValue)}
                     >
                         <Picker.Item label='All Styles' value='' />
-                        <Picker.Item label=' Pale Ale' value='pale' />
-                        <Picker.Item label='Black Ale' value='black' />
-                        <Picker.Item label='IPA' value='ipa' />
+                        {beerStyleOptions.map((style) => (
+                            <Picker.Item label={style} value={style} key={style} />
+                        ))}
                     </Picker>
                 </View>
             </View>

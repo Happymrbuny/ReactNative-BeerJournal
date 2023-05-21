@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -18,22 +18,21 @@ const FeaturedItem = (props) => {
     }
     if (item) {
         return (
-            <Card containerStyle={{ padding: 0 }}>
-                <Card.Image source={{ uri: baseUrl + item.image }}>
-                    <View>
-                        <Text
-                            style={{
-                                color: 'black',
-                                backgroundColor: 'white',
-                                textAlign: 'center',
-                                fontSize: 20
-                            }}
-                        >
-                            {item.name}
+            <Card containerStyle={{ padding: 0, height: 250 }}>
+                <Card.Title style={{ fontSize: 20, paddingTop: 10 }}>{item.name}</Card.Title>
+                <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 2 }}>
+                        <Card.Image
+                            source={{ uri: baseUrl + item.image }}
+                            style={styles.featuredImage}
+                        />
+                    </View>
+                    <View style={styles.featuredText}>
+                        <Text style={{ fontSize: 15 }}>
+                            {item.description}
                         </Text>
                     </View>
-                </Card.Image>
-                <Text style={{ margin: 20 }}>{item.description}</Text>
+                </View>
             </Card>
         );
     }
@@ -69,5 +68,19 @@ const HomeScreen = () => {
         </ScrollView>
     );
 };
+
+const styles = StyleSheet.create({
+    featuredImage: {
+        margin: 10,
+        height: 175,
+        resizeMode: 'contain'
+    },
+    featuredText: {
+        flex: 2,
+        borderWidth: .5,
+        margin: 20,
+        padding: 20
+    }
+})
 
 export default HomeScreen;

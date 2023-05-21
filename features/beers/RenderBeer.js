@@ -6,17 +6,10 @@ const RenderBeer = (props) => {
     const { beer } = props;
 
     if (beer) {
+        console.log('Image URL: ', baseUrl + beer.image);
         return (
             <Card containerStyle={StyleSheet.cardContainer}>
-                <Card.Image source={{ uri: baseUrl + beer.image }} >
-                    <View style={{ flex: 1 }}>
-                        <Text
-                            style={styles.cardText}
-                        >
-                            {beer.name}
-                        </Text>
-                    </View>
-                </Card.Image>
+                <Card.Image source={{ uri: baseUrl + beer.image }} />
                 <Text
                     style={{
                         margin: 20
@@ -63,7 +56,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'row',
-        margin: 20
+        margin: 5
     },
     cardText: {
         textShadowColor: 'rgba(0,0,0,1)',
