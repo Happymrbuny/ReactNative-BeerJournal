@@ -1,4 +1,4 @@
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Image, ListItem } from 'react-native-elements';
 import { SwipeRow } from 'react-native-swipe-list-view';
@@ -19,9 +19,21 @@ const MyBeersScreen = ({ navigation }) => {
                 <View style={styles.deleteView}>
                     <TouchableOpacity
                         style={styles.deleteTouchable}
-                        onPress={() =>
-                            dispatch(toggleMyBeer(beer.id))
-                        }
+                        onPress={() => Alert.alert('Remove Beer?',
+                            'Are you sure you want to remove ' + beer.name + ' from your beers?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(beer.name + ' not deleted'),
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => dispatch(toggleMyBeer(beer.id))
+                                }
+                            ],
+                            { cancelable: false }
+                        )}
                     >
                         <Text style={styles.deleteText}>Remove from My Beers</Text>
                     </TouchableOpacity>

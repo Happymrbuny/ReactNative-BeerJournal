@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlatList, Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { Image, ListItem, Button, Icon } from 'react-native-elements';
+import { FlatList, Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Image, ListItem, Icon } from 'react-native-elements';
 import { SwipeRow } from 'react-native-swipe-list-view';
 import { toggleMyBeer } from '../features/myBeers/myBeersSlice';
 import { baseUrl } from '../shared/baseUrl';
@@ -43,13 +43,27 @@ const DirectoryTab = ({ navigation }) => {
                 <View style={styles.addView}>
                     <TouchableOpacity
                         style={styles.addTouchable}
-                        onPress={() => {
-                            if (!myBeers.includes(beer.id)) {
-                                dispatch(toggleMyBeer(beer.id));
-                            } else {
-                                console.log('Already set as My Beer.');
-                            }
-                        }}
+                        onPress={() => Alert.alert('Add Beer?',
+                            'Are you sure you want to add ' + beer.name + ' to your beers?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(beer.name + ' not added'),
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => {
+                                        if (!myBeers.includes(beer.id)) {
+                                            dispatch(toggleMyBeer(beer.id));
+                                        } else {
+                                            console.log('Already set as My Beer.');
+                                        }
+                                    }
+                                }
+                            ],
+                            { cancelable: false }
+                        )}
                     >
                         <Text style={styles.addText}>Add to My Beers</Text>
                     </TouchableOpacity>

@@ -303,9 +303,9 @@ const Main = () => {
                 />
                 <Drawer.Screen
                     name='Beers'
-                    component={MyBeersNavigator}
+                    component={DirectoryNavigator}
                     options={{
-                        title: 'My Beers',
+                        title: 'Beers',
                         drawerIcon: ({ color }) => (
                             <Icon
                                 name='beer'
@@ -317,22 +317,7 @@ const Main = () => {
                         )
                     }}
                 />
-                <Drawer.Screen
-                    name='Directory'
-                    component={DirectoryNavigator}
-                    options={{
-                        title: 'Beer Directory',
-                        drawerIcon: ({ color }) => (
-                            <Icon
-                                name='list'
-                                type='font-awesome'
-                                size={24}
-                                iconStyle={{ width: 24 }}
-                                color={color}
-                            />
-                        )
-                    }}
-                />
+
                 <Drawer.Screen
                     name='Breweries'
                     component={BreweriesNavigator}
