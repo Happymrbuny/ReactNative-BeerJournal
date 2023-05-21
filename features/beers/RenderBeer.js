@@ -6,7 +6,6 @@ const RenderBeer = (props) => {
     const { beer } = props;
 
     if (beer) {
-        console.log('Image URL: ', baseUrl + beer.image);
         return (
             <Card containerStyle={StyleSheet.cardContainer}>
                 <Card.Image source={{ uri: baseUrl + beer.image }} />

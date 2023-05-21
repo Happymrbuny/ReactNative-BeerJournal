@@ -17,8 +17,10 @@ import BreweriesScreen from './BreweriesScreen';
 import EventsScreen from './EventsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import logo from '../assets/images/logo.png';
 import foam from '../assets/images/foam.jpg';
+import bubbles from '../assets/images/bubbles.jpg';
 
 const Drawer = createDrawerNavigator();
 const screenOptions = {
@@ -187,11 +189,17 @@ const DirectoryNavigator = () => {
             <Stack.Screen
                 name='Directory'
                 component={DirectoryScreen}
-                options={({ navigation }) => ({
+                options={({ navigation, route }) => ({
                     title: 'Beer Directory',
+                    headerTitle: getFocusedRouteNameFromRoute(route),
                     headerLeft: () => (
                         <Icon
-                            name='list'
+                            name={
+                                getFocusedRouteNameFromRoute(route) ===
+                                    'Directory'
+                                    ? 'list'
+                                    : 'beer'
+                            }
                             type='font-awesome'
                             iconStyle={styles.stackIcon}
                             onPress={() => navigation.toggleDrawer()}
@@ -231,7 +239,13 @@ const CustomDrawerContent = (props) => {
                     <Text style={styles.drawerHeaderText}>Beer Journal</Text>
                 </View>
             </ImageBackground>
-            <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+            <ImageBackground
+                source={bubbles}
+                style={{ flex: 1 }}
+                resizeMode='cover'
+            >
+                <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+            </ImageBackground>
         </DrawerContentScrollView>
     )
 };
