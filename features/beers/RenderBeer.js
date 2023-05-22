@@ -37,7 +37,7 @@ const RenderBeer = (props) => {
                         <Icon
                             name='pencil'
                             type='font-awesome'
-                            color='#5637DD'
+                            color='#bfa300'
                             raised
                             reverse
                             onPress={() => { props.onShowModal() }}

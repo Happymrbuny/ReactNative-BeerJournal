@@ -283,7 +283,7 @@ const Main = () => {
                 initialRoute='Home'
                 drawerStyle={{ backgroundColor: '#ec9d00' }}
                 drawerContent={CustomDrawerContent}
-                drawerContentOptions={{ activeTintColor: 'white', inactiveTintColor: '#4f480c' }}
+                drawerContentOptions={{ activeTintColor: 'black', inactiveTintColor: '#8c7808' }}
             >
                 <Drawer.Screen
                     name='Home'

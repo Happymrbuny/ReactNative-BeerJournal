@@ -111,7 +111,7 @@ const BeerInfoScreen = ({ route }) => {
                     <View style={{ margin: 10 }}>
                         <Button
                             title='Submit'
-                            color='#5637DD'
+                            color='#bfa300'
                             onPress={() => {
                                 handleSubmit();
                                 resetForm();
