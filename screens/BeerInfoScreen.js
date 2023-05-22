@@ -5,6 +5,7 @@ import { Input, Rating } from 'react-native-elements';
 import RenderBeer from '../features/beers/RenderBeer';
 import { toggleMyBeer } from '../features/myBeers/myBeersSlice';
 import { postComment } from '../features/comments/commentsSlice';
+import * as Animatable from 'react-native-animatable';
 
 const BeerInfoScreen = ({ route }) => {
     const { beer } = route.params;
@@ -50,7 +51,11 @@ const BeerInfoScreen = ({ route }) => {
     };
 
     return (
-        <>
+        <Animatable.View
+            animation='fadeInUp'
+            duration={2000}
+            delay={1000}
+        >
             <FlatList
                 data={comments.commentsArray.filter(
                     (comment) => comment.beerId === beer.id
@@ -126,7 +131,7 @@ const BeerInfoScreen = ({ route }) => {
                     </View>
                 </View>
             </Modal>
-        </>
+        </Animatable.View>
     );
 };
 
@@ -138,12 +143,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '$43484D',
         padding: 10,
-        paddingTop: 30
+        paddingTop: 30,
     },
     commentItem: {
         paddingVertical: 10,
-        paddingHorizontal: 20,
-        backgroundColor: '#fff'
+        paddingHorizontal: 30,
+        backgroundColor: '#fff',
     },
     modal: {
         justifyContent: 'center',
