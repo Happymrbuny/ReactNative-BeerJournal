@@ -5,6 +5,7 @@ import { SwipeRow } from 'react-native-swipe-list-view';
 import { toggleMyBeer } from '../features/myBeers/myBeersSlice';
 import Loading from '../components/LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import * as Notifications from 'expo-notifications';
 
 const MyBeersScreen = ({ navigation }) => {
     const { beersArray, isLoading, errMess } = useSelector(
@@ -14,6 +15,35 @@ const MyBeersScreen = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const renderMyBeer = ({ item: beer }) => {
+
+        const presentLocalNotification = async (beerRemoved) => {
+            const sendNotification = () => {
+                Notifications.setNotificationHandler({
+                    handleNotification: async () => ({
+                        shouldShowAlert: true,
+                        shouldPlaySound: true,
+                        shouldSetBadge: true
+                    })
+                });
+
+                Notifications.scheduleNotificationAsync({
+                    content: {
+                        title: 'Beer Removed!',
+                        body: `${beerRemoved} was removed from your beers.`
+                    },
+                    trigger: null
+                });
+            };
+
+            let permissions = await Notifications.getPermissionsAsync();
+            if (!permissions.granted) {
+                permissions = await Notifications.requestPermissionsAsync();
+            }
+            if (permissions.granted) {
+                sendNotification();
+            }
+        };
+
         return (
             <SwipeRow rightOpenValue={-100}>
                 <View style={styles.deleteView}>
@@ -29,7 +59,10 @@ const MyBeersScreen = ({ navigation }) => {
                                 },
                                 {
                                     text: 'OK',
-                                    onPress: () => dispatch(toggleMyBeer(beer.id))
+                                    onPress: () => {
+                                        dispatch(toggleMyBeer(beer.id));
+                                        presentLocalNotification(beer.name);
+                                    }
                                 }
                             ],
                             { cancelable: false }

@@ -49,7 +49,6 @@ const BeerInfoScreen = ({ route }) => {
             </View>
         );
     };
-
     return (
         <Animatable.View
             animation='fadeInUp'
@@ -141,19 +140,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
-        color: '$43484D',
+        color: '#43484D',
         padding: 10,
-        paddingTop: 30,
+        paddingTop: 30
     },
     commentItem: {
         paddingVertical: 10,
-        paddingHorizontal: 30,
-        backgroundColor: '#fff',
+        paddingHorizontal: 20,
+        backgroundColor: '#fff'
     },
     modal: {
         justifyContent: 'center',
         margin: 20
     }
 });
+
 
 export default BeerInfoScreen;

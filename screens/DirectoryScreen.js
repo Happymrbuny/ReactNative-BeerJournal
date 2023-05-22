@@ -9,6 +9,7 @@ import Loading from '../components/LoadingComponent';
 import { Picker } from '@react-native-picker/picker';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyBeersScreen from './MyBeersScreen';
+import * as Notifications from 'expo-notifications';
 
 const DirectoryTab = ({ navigation }) => {
     const beers = useSelector((state) => state.beers);
@@ -38,6 +39,35 @@ const DirectoryTab = ({ navigation }) => {
     }
 
     const renderDirectoryItem = ({ item: beer }) => {
+
+        const presentLocalNotification = async (beerAdded) => {
+            const sendNotification = () => {
+                Notifications.setNotificationHandler({
+                    handleNotification: async () => ({
+                        shouldShowAlert: true,
+                        shouldPlaySound: true,
+                        shouldSetBadge: true
+                    })
+                });
+
+                Notifications.scheduleNotificationAsync({
+                    content: {
+                        title: 'Beer Added!',
+                        body: `${beerAdded} was added to your beers.`
+                    },
+                    trigger: null
+                });
+            };
+
+            let permissions = await Notifications.getPermissionsAsync();
+            if (!permissions.granted) {
+                permissions = await Notifications.requestPermissionsAsync();
+            }
+            if (permissions.granted) {
+                sendNotification();
+            }
+        };
+
         return (
             <SwipeRow leftOpenValue={100}>
                 <View style={styles.addView}>
@@ -53,13 +83,13 @@ const DirectoryTab = ({ navigation }) => {
                                 },
                                 {
                                     text: 'OK',
-                                    onPress: () => {
-                                        if (!myBeers.includes(beer.id)) {
-                                            dispatch(toggleMyBeer(beer.id));
-                                        } else {
-                                            console.log('Already set as My Beer.');
-                                        }
-                                    }
+                                    onPress: () =>
+                                        !myBeers.includes(beer.id)
+                                            ? (
+                                                dispatch(toggleMyBeer(beer.id)),
+                                                presentLocalNotification(beer.name)
+                                            )
+                                            : console.log('Already set as My Beer.')
                                 }
                             ],
                             { cancelable: false }

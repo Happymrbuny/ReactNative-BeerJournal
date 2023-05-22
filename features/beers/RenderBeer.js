@@ -12,7 +12,7 @@ const RenderBeer = (props) => {
                 duration={2000}
                 delay={1000}
             >
-                <Card containerStyle={StyleSheet.cardContainer}>
+                <Card containerStyle={styles.cardContainer}>
                     <Card.Image source={{ uri: baseUrl + beer.image }} />
                     <Text
                         style={{
@@ -54,17 +54,17 @@ const styles = StyleSheet.create({
     cardContainer: {
         padding: 0,
         margin: 0,
-        marginBottom: 20,
+        marginBottom: 20
     },
     cardRow: {
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'row',
-        margin: 5
+        margin: 20
     },
     cardText: {
-        textShadowColor: 'rgba(0,0,0,1)',
+        textShadowColor: 'rgba(0, 0, 0, 1)',
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 20,
         textAlign: 'center',
