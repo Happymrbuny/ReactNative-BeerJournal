@@ -15,6 +15,7 @@ import ContactScreen from './ContactScreen';
 import MyBeersScreen from './MyBeersScreen';
 import BreweriesScreen from './BreweriesScreen';
 import EventsScreen from './EventsScreen';
+import LoginScreen from './LoginScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
@@ -89,6 +90,33 @@ const MyBeersNavigator = () => {
         </Stack.Navigator>
     )
 }
+const LoginNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen
+                name='Login'
+                component={LoginScreen}
+                options={({ navigation, route }) => ({
+                    headerLeft: () => (
+                        <Icon
+                            name={
+                                getFocusedRouteNameFromRoute(route) ===
+                                    'Register'
+                                    ? 'user-plus'
+                                    : 'sign-in'
+                            }
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    ),
+                    headerTitle: getFocusedRouteNameFromRoute(route)
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
 const BreweriesNavigator = () => {
     const Stack = createStackNavigator();
     return (
@@ -285,6 +313,21 @@ const Main = () => {
                 drawerContent={CustomDrawerContent}
                 drawerContentOptions={{ activeTintColor: 'black', inactiveTintColor: '#8c7808' }}
             >
+                <Drawer.Screen
+                    name='Login'
+                    component={LoginNavigator}
+                    options={{
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='sign-in'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
                 <Drawer.Screen
                     name='Home'
                     component={HomeNavigator}
