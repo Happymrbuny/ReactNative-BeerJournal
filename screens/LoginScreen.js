@@ -10,9 +10,6 @@ const LoginTab = ({ navigation }) => {
     const [remember, setRemember] = useState(false);
 
     const handleLogin = () => {
-        console.log('username:', username);
-        console.log('password:', password);
-        console.log('remember:', remember);
         if (remember) {
             SecureStore.setItemAsync(
                 'userinfo',
